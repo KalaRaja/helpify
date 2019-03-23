@@ -1,0 +1,77 @@
+#!/bin/bash
+
+# Get IP
+local_ip=`hostname -I | awk '{ print $1 }'`
+
+# Get hostname
+hostname=`hostname`
+
+
+# certificate maker
+makeCert() {
+	if [ ! -d $HOME/kuberdashcerts ]; 
+	then
+		mkdir $HOME/kuberdashcerts
+		openssl genrsa -des3 -passout pass:x -out $HOME/kuberdashcerts/dashboard.pass.key 2048
+		openssl rsa -passin pass:x -in $HOME/kuberdashcerts/dashboard.pass.key -out $HOME/kuberdashcerts/dashboard.key
+		rm $HOME/kuberdashcerts/dashboard.pass.key
+		openssl req -new -key $HOME/kuberdashcerts/dashboard.key -out $HOME/kuberdashcerts/dashboard.csr
+		openssl x509 -req -sha256 -days 365 -in $HOME/kuberdashcerts/dashboard.csr -signkey $HOME/kuberdashcerts/dashboard.key -out $HOME/kuberdashcerts/dashboard.crt
+	fi
+	kubectl create secret generic kubernetes-dashboard-certs --from-file=$HOME/kuberdashcerts -n kube-system
+}
+
+# write ip hostname mapping to /etc/hosts
+sudo echo "$local_ip  $hostname" >> /etc/hosts
+
+# install kubernetes
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kube*
+EOF
+
+# Set SELinux in permissive mode (effectively disabling it)
+setenforce 0
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
+sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+systemctl enable --now kubelet
+
+# make network bridges
+sudo ./make_network_bridge
+
+sudo kubeadm reset
+
+#init kubernetes master
+if [ "$1" == "master" ];
+then
+    sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=$local_ip
+
+    echo "Kubernet master housekeeping"
+    mkdir -p $HOME/.kube
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+	
+    # add pod networks
+	sudo kubectl apply -f https://docs.projectcalico.org/v3.6/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
+
+	# print master details
+	sudo kubectl get pods -o wide --all-namespaces
+
+    # add dashboard
+    makeCert
+    sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+    sudo kubectl patch svc kubernetes-dashboard --type='json' -p '[{"op":"replace","path":"/spec/type","value":"NodePort"}]' --namespace=kube-system
+	sudo kubectl create serviceaccount dashboard -n default
+	sudo kubectl create clusterrolebinding dashboard-admin -n default --clusterrole=cluster-admin --serviceaccount=default:dashboard
+	secret=`sudo kubectl get secret $(sudo kubectl get serviceaccount dashboard -o jsonpath="{.secrets[0].name}") -o jsonpath="{.data.token}" | base64 --decode`
+	echo $secret
+	sudo kubectl -n kube-system get service kubernetes-dashboard
+fi
