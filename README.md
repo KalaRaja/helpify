@@ -1,1 +1,1 @@
-# helpify
+# helpify - community portal
