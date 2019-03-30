@@ -15,11 +15,10 @@ function sendQuery($cmd) {
     global $conn;
     try{
     
-    $result = pg_query($conn,$cmd);
-  
+    return pg_query($conn,$cmd) or die('already exists');
     }
     catch(Exception $e) {
-        echo 'Message: ' .$e->getMessage();
+        echo "\"status\":\"failed\"";
       }
 
 

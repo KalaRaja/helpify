@@ -25,7 +25,7 @@ $phone=0;
         if ($createUser) {
             //TODO- navigate to login page
             // echo '<script type="text/javascript">alert("The username is already taken"); location="http://localhost/ItsHappening/login.php";</script>';
-            echo $userexists = json_encode("The username is already taken");
+            echo "{\"status\":\"failed\"}";
             
         } else {
             
@@ -40,7 +40,7 @@ $phone=0;
 
             //TODO- update the location of file
             // echo '<script type="text/javascript">alert("Registration Successful");</script>';
-            echo $usersuccess = json_encode("Registration Successful");
+            echo "{\"status\":\"successfull\"}";
            
         }
      
