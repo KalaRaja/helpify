@@ -16,5 +16,25 @@ body {
 .container-overlay {
   height: calc(100% - 40px);
   width: calc(100% - 40px);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
+  position: relative;
+  top: 20px;
+  left: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 1rem;
+  position: relative;
+}
+
+.card-4 {
+  height: calc(100% - 40px);
+  width: 25%;
+}
+.card-5 {
+  height: calc(100% - 40px);
+  width: 70%;
 }
