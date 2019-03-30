@@ -16,7 +16,7 @@ $customerQuery = sendQuery("SELECT password FROM users  where email = '$username
 $rows = pg_num_rows($customerQuery);
     if($rows<1){
         // echo '<script type="text/javascript">alert("User undefined");</script>';
-        echo $userundefined = json_encode("User undefined");
+        echo "{\"status\":\"failed\"}";
     }
 
 function password_auth($authQuery) {
@@ -26,12 +26,12 @@ function password_auth($authQuery) {
     $passwordRetr = $result['password'];
 
     if ($passwordEnc == $passwordRetr) {
-        $_SESSION['username'] = $username;
-        return true;
+        // $_SESSION['username'] = $username;
+        echo "{\"status\":\"success\"}";
     } else {
         //TODO- update location on login
         // echo '<script type="text/javascript">alert("Incorrect Password"); location="logout.php";</script>';
-        echo $incorrectpwd = json_encode("Incorrect Password");
+        echo "{\"status\":\"failed\"}";
 
     }
 }
