@@ -107,7 +107,8 @@ body {
 
 .wrapper {
   width: 320px;
-  height: 540px;
+  height: 400px;
+  margin-top: 100px;
   background: #fdfeff;
   transition: background 0.6s ease;
   border-radius: 10px;
