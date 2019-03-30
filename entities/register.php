@@ -2,10 +2,10 @@
 include '../config/database.php';
 
 //TODO - update and add the field names
-$firstname = $_GET['firstname'];
-$lastname = $_GET['lastname'];
-$password = $_GET['password'];
-$email = $_GET['user_email'];
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$password = $_POST['password'];
+$email = $_POST['user_email'];
 // $tags = $_GET['tags'];
 $tags='{}';
 $street=Null;
@@ -20,11 +20,13 @@ $phone=0;
 
    
 
-        $createUser = sendQuery("SELECT email FROM users where email = '$email'");
-
-        if ($createUser) {
+     sendQuery("SELECT email FROM users where email = '$email'");
+        // $rows = pg_fetch_assoc($createUser);
+        $rows = pg_fetch_assoc($result);
+        if (count($rows)>1) {
             //TODO- navigate to login page
             // echo '<script type="text/javascript">alert("The username is already taken"); location="http://localhost/ItsHappening/login.php";</script>';
+           
             echo "{\"status\":\"failed\"}";
             
         } else {
@@ -41,7 +43,7 @@ $phone=0;
             //TODO- update the location of file
             // echo '<script type="text/javascript">alert("Registration Successful");</script>';
             echo "{\"status\":\"successfull\"}";
-            header("Location: ../timeline.html");
+             header("Location: ../timeline.html");
            
         }
      

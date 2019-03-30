@@ -13,9 +13,10 @@ $conn = pg_connect("host=localhost port=5432 user = postgres password=Winterisco
 
 function sendQuery($cmd) {
     global $conn;
+    global $result;
     try{
     
-    return pg_query($conn,$cmd) or die('already exists');
+   $result= pg_query($conn,$cmd) or die('already exists');
     }
     catch(Exception $e) {
         echo "\"status\":\"failed\"";

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../config/database.php';
-$username = $_POST['username'];
+$username = $_POST['user_email'];
 $password = $_POST['password'];
 
 //TODO - handling login of admin account
@@ -12,22 +12,27 @@ $password = $_POST['password'];
 //     return;
 // }
 
-$customerQuery = sendQuery("SELECT password FROM users  where email = '$username'");
-$rows = pg_num_rows($customerQuery);
-    if($rows<1){
+ sendQuery("SELECT password FROM users  where email = '$username'");
+
+$rows = pg_fetch_assoc($result);
+
+    if(count($rows)<1){
         // echo '<script type="text/javascript">alert("User undefined");</script>';
         echo "{\"status\":\"failed\"}";
     }
+    else{
+        password_auth();
+    }
 
-function password_auth($authQuery) {
-    global $passwordEnc, $username;
+function password_auth() {
 
-    $result = $authQuery->fetch_assoc();
     $passwordRetr = $result['password'];
+    echo($password);
+    echo($passwordRetr);
 
-    if ($passwordEnc == $passwordRetr) {
+    if ($password == $passwordRetr) {
         // $_SESSION['username'] = $username;
-        header("Location: ../timeline.html");
+         header("Location: ../timeline.html");
     } else {
         //TODO- update location on login
         // echo '<script type="text/javascript">alert("Incorrect Password"); location="logout.php";</script>';
