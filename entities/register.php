@@ -41,6 +41,7 @@ $phone=0;
             //TODO- update the location of file
             // echo '<script type="text/javascript">alert("Registration Successful");</script>';
             echo "{\"status\":\"successfull\"}";
+            header("Location: ../timeline.html");
            
         }
      

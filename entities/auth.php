@@ -27,12 +27,12 @@ function password_auth($authQuery) {
 
     if ($passwordEnc == $passwordRetr) {
         // $_SESSION['username'] = $username;
-        echo "{\"status\":\"success\"}";
+        header("Location: ../timeline.html");
     } else {
         //TODO- update location on login
         // echo '<script type="text/javascript">alert("Incorrect Password"); location="logout.php";</script>';
         echo "{\"status\":\"failed\"}";
-
+        header("Location: ../timeline.html");
     }
 }
 
