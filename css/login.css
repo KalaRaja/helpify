@@ -218,7 +218,7 @@ input::placeholder {
   top: 50%;
   left: 30px;
   width: calc(50% - 30px);
-  min-height: 420px;
+  min-height: 500px;
   background-color: #fff;
   border-radius: 3px;
   box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
@@ -349,7 +349,7 @@ input::placeholder {
    */
 @media screen and (max-width: 990px) {
   .user_options-forms {
-    min-height: 350px;
+    min-height: 450px;
   }
   .user_options-forms .forms_buttons {
     flex-direction: column;
@@ -377,4 +377,8 @@ input::placeholder {
   font-family: "Satisfy", cursive;
   font-size: 80px;
   text-align: center;
+}
+
+.form_field_login {
+  margin-bottom: 40px;
 }
