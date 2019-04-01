@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+  <body>
+    <div class="facebook-status">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a
+            href="#update-status-tab"
+            class="update-status-btn"
+            aria-controls="update-status"
+            role="tab"
+            data-toggle="tab"
+            data-placement="bottom"
+            data-original-title="Update Status"
+          >
+            <span
+              class="glyphicon glyphicon-pencil update-status-icon"
+              aria-hidden="true"
+            ></span
+            >&nbsp; Update Status
+          </a>
+        </li>
+        <li role="presentation" title="Choose a file to upload">
+          <a
+            href="#add-photos-video-tab"
+            class="add-photos-video-btn"
+            aria-controls="add-photos-video"
+            role="tab"
+            data-toggle="tab"
+            data-placement="bottom"
+            data-original-title="Add Photo/Video"
+          >
+            <span
+              class="glyphicon glyphicon-picture photos-video-icon"
+              aria-hidden="true"
+            ></span
+            >&nbsp; Add Photo/Video
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div
+          role="tabpanel"
+          class="tab-pane fade in active"
+          id="update-status-tab"
+        >
+          <div class="media status-box">
+            <div class="media-left">
+              <a href="#" target="_blank">
+                <img
+                  class="media-object"
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/277052/profile-picture.jpg"
+                  alt="profile-picture"
+                />
+              </a>
+            </div>
+            <div class="media-body">
+              <textarea
+                rows="1"
+                name="status"
+                title="What's on your mind?"
+                placeholder="What's on your mind?"
+              ></textarea>
+            </div>
+            <div class="file-upload"></div>
+            <div class="col-xs-12">
+              <ul class="status-controls">
+                <li title="No file chosen">
+                  <a
+                    href="#"
+                    class="add-photos-video-btn"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    data-original-title="Add a photo to your post"
+                  >
+                    <i class="fa fa-camera"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    data-original-title="Tag people in your post"
+                  >
+                    <i class="fa fa-user-plus"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    data-original-title="Add what you're doing or how you're feeling"
+                  >
+                    <i class="fa fa-smile-o"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    data-original-title="Add a location to your post"
+                  >
+                    <i class="fa fa-map-marker"></i>
+                  </a>
+                </li>
+              </ul>
+              <div class="post-controls">
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-default btn-sm dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    data-original-title="Public"
+                    data-placement="top"
+                  >
+                    <span class="selected">
+                      <span
+                        class="glyphicon glyphicon-globe"
+                        aria-hidden="true"
+                      ></span
+                      >Public
+                    </span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-header">
+                      Who should see this?
+                    </li>
+                    <li>
+                      <a href="#" class="privacy-status">
+                        <span
+                          class="glyphicon glyphicon-ok current"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="selection">
+                          <span
+                            class="glyphicon glyphicon-globe"
+                            aria-hidden="true"
+                          ></span
+                          >Public
+                        </span>
+                        <span class="description"
+                          >Anyone on or off Facebook</span
+                        >
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="privacy-status">
+                        <span
+                          class="glyphicon glyphicon-ok current"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="selection">
+                          <span
+                            class="glyphicon glyphicon-user"
+                            aria-hidden="true"
+                          ></span
+                          >Friends
+                        </span>
+                        <span class="description"
+                          >Your friends on Facebook</span
+                        >
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="privacy-status">
+                        <span
+                          class="glyphicon glyphicon-ok current"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="selection">
+                          <span
+                            class="glyphicon glyphicon-lock"
+                            aria-hidden="true"
+                          ></span
+                          >Only Me
+                        </span>
+                        <span class="description">Only Me</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="more-options-link">
+                        <span class="caret"></span>More Options
+                      </a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li class="extra-option">
+                      <a href="#" class="privacy-status">
+                        <span
+                          class="glyphicon glyphicon-ok current"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="selection">
+                          <span
+                            class="glyphicon glyphicon-star"
+                            aria-hidden="true"
+                          ></span
+                          >Close Friends
+                        </span>
+                      </a>
+                    </li>
+                    <li class="extra-option">
+                      <a href="#" class="privacy-status">
+                        <span
+                          class="glyphicon glyphicon-ok current"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="selection">
+                          <span
+                            class="glyphicon glyphicon-home"
+                            aria-hidden="true"
+                          ></span
+                          >Family
+                        </span>
+                      </a>
+                    </li>
+                    <li class="extra-option">
+                      <a href="#" class="privacy-status">
+                        <span
+                          class="glyphicon glyphicon-ok current"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="selection">
+                          <span
+                            class="glyphicon glyphicon-education"
+                            aria-hidden="true"
+                          ></span
+                          >University of the West of Scotland
+                        </span>
+                      </a>
+                    </li>
+                    <li class="extra-option">
+                      <a href="#" class="privacy-status">
+                        <span
+                          class="glyphicon glyphicon-ok current"
+                          aria-hidden="true"
+                        ></span>
+                        <span class="selection">
+                          <span
+                            class="glyphicon glyphicon-map-marker"
+                            aria-hidden="true"
+                          ></span
+                          >Glasgow, United Kingdom
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">
+                  Post
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="add-photos-video-tab">
+          <ul>
+            <li class="col-xs-6">
+              <a href="#" class="add-photos-video-btn">
+                Upload Photo/Video
+              </a>
+            </li>
+            <li class="col-xs-6">
+              <a
+                href="#"
+                class="create-photo-album-btn"
+                title="Doesn't work on this demo"
+              >
+                Create Photo Album
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <input class="file-upload-input" type="file" />
+    <div
+      class="alert alert-dismissible status-alert"
+      role="alert"
+      data-hide="alert"
+    >
+      <div class="alert-header">
+        Can't Read Files
+      </div>
+      <div class="alert-body">
+        Your photo couldn't be uploaded. Photos should be saved as JPG, PNG,
+        GIF, BMP or TIFF files.
+      </div>
+      <div class="alert-footer">
+        <button type="button" class="btn status-alert-close">OK</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    $(function() {
+      $('a[href="#"], .post-controls .btn-primary').click(function(e) {
+        e.preventDefault();
+      });
+    });
+
+    $(".status-box .media-body textarea").focus(function() {
+      $(".status-controls").show();
+    });
+
+    $(".post-controls .dropdown-menu .current:first").show();
+    $(".post-controls .btn-default").tooltip({
+      container: ".facebook-status"
+    });
+    $(function() {
+      $(".dropdown-menu li a.privacy-status").click(function() {
+        var selectValue = $(this)
+          .find(".selection")
+          .text();
+        $(".post-controls .dropdown-menu .current").hide();
+        $(this)
+          .find(".current")
+          .show();
+        $(".post-controls .btn-default")
+          .tooltip("hide")
+          .attr("data-original-title", selectValue.trim());
+        $(".btn:first-child .selected").html(
+          $(this)
+            .find("span.selection")
+            .html()
+        );
+        $(".post-controls").on("hidden.bs.dropdown", function() {
+          $(".post-controls .dropdown-menu li a.more-options-link").show();
+          $(
+            ".post-controls .dropdown-menu li.extra-option, .post-controls .dropdown-menu .divider"
+          ).hide();
+        });
+      });
+    });
+
+    $(function() {
+      $(".add-photos-video-btn").click(function(e) {
+        e.preventDefault();
+        var fileHolder = $(".file-upload");
+        var fileInput = $(".file-upload-input");
+        var statusInput = $(".status-box .media-body textarea");
+        var postBtn = $(".btn-primary");
+        var closeBtn =
+          '<a href="#" class="remove" title="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
+        var cameraBtn = $(".status-controls .add-photos-video-btn .fa");
+        var videoIcon =
+          '<span class="glyphicon glyphicon-film file-icon" aria-hidden="true"></span>';
+        var audioIcon =
+          '<span class="glyphicon glyphicon-headphones file-icon" aria-hidden="true"></span>';
+        var fileIcon =
+          '<span class="glyphicon glyphicon-file file-icon" aria-hidden="true"></span>';
+        var statusAlert = $(".status-alert");
+
+        $(".file-upload-input").trigger("click");
+        $(".file-upload-input:hidden")
+          .on("change", function() {
+            var isImage = fileInput
+              .val()
+              .match(/(?:jpg|jpeg|bmp|png|gif|tiff)$/gim);
+            var isVideo = fileInput
+              .val()
+              .match(
+                /(?:3g2|3gp|3gpp|asf|avi|dat|divx|dv|f4v|flv|m2ts|m4v|mkv|mod|mov|mp4|mpe|mpeg|mpeg4|mpg|mts|nsv|ogm|ogv|qt|tod|ts|vob|wmv)$/gim
+              );
+            var isAudio = fileInput
+              .val()
+              .match(/(?:aif|iff|m3u|m4a|mid|mp3|mpa|ra|wav|wma)$/gim);
+            var isFile = fileInput
+              .val()
+              .match(
+                /(?:txt|doc|docx|pdf|csv|pps|ppt|pptx|ps|ai|svg|indd|psd|eps)$/gim
+              );
+            var fileName = fileInput
+              .val()
+              .split("\\")
+              .pop()
+              .replace(/.jpg|.jpeg|.bmp|.png|.gif|.tiff/i, "");
+            var progressBar =
+              '<div class="progress active"><div class="progress-bar" style="width:0%"></div></div>';
+            var loadingBlocks =
+              '<div class="loading-blocks"><div class="block"></div><div class="block"></div><div class="block"></div></div>';
+
+            postBtn.prop("disabled", true);
+            fileHolder.empty();
+            fileHolder.css("border-width", "0");
+            $(".update-status-btn").tab("show");
+            $(":focus").blur();
+
+            fileHolder
+              .show()
+              .prepend(closeBtn)
+              .prepend(progressBar);
+            $(".file-upload a.remove").hide();
+
+            fileHolder.hover(
+              function() {
+                $(this)
+                  .has("img")
+                  .css({
+                    "background-color": "#000",
+                    "border-color": "#f6f7f8"
+                  });
+                $(this)
+                  .has("img")
+                  .find("img")
+                  .css("opacity", ".7");
+                fileHolder.find("a.remove").show();
+              },
+              function() {
+                $(this)
+                  .has("img")
+                  .css({
+                    "background-color": "#f6f7f8",
+                    "border-color": "rgba(0, 0, 0, 0.1)"
+                  });
+                $(this)
+                  .has("img")
+                  .find("img")
+                  .css("opacity", "1");
+                fileHolder.find("a.remove").hide();
+              }
+            );
+
+            if (isImage) {
+              statusInput.attr(
+                "placeholder",
+                "Say something about this photo..."
+              );
+              cameraBtn.css("color", "#5b7fd1");
+              $(".progress-bar")
+                .stop()
+                .animate(
+                  {
+                    width: "100%"
+                  },
+                  3000,
+                  function() {
+                    setTimeout(function() {
+                      fileHolder.find(".progress").remove();
+                      fileHolder.prepend(loadingBlocks);
+                      var reader = new FileReader();
+                      reader.onload = function(e) {
+                        if (fileHolder.find("img").length) {
+                          fileHolder.find("img").attr("src", e.target.result);
+                        } else {
+                          fileHolder.append(
+                            $("<img />", {
+                              src: e.target.result,
+                              alt: fileName,
+                              class: ""
+                            })
+                          );
+                        }
+                        fileHolder.each(function() {
+                          var imageUpload = $(this).find("img");
+                          var img = new Image();
+                          img.src = imageUpload[0].src;
+                          img.onload = function() {
+                            fileHolder.find(".loading-blocks").remove();
+                            postBtn.prop("disabled", false);
+                            fileHolder.css(
+                              "border",
+                              "1px solid rgba(0, 0, 0, 0.1)"
+                            );
+                            fileHolder.find("a.remove").css({
+                              "-webkit-text-fill-color": "#dcdcdc",
+                              "-webkit-text-stroke-color": "#565a5e"
+                            });
+                            fileHolder.find("a.remove").hover(
+                              function() {
+                                $(this).css("-webkit-text-fill-color", "#fff");
+                              },
+                              function() {
+                                $(this).css(
+                                  "-webkit-text-fill-color",
+                                  "#dcdcdc"
+                                );
+                              }
+                            );
+                            if (
+                              img.width < fileHolder.width() ||
+                              img.width < img.height
+                            ) {
+                              fileHolder.find("img").addClass("portrait");
+                            } else {
+                              fileHolder.find("img").removeClass("portrait");
+                            }
+                          };
+                        });
+                      };
+                      reader.readAsDataURL(fileInput[0].files[0]);
+                    }, 300);
+                  }
+                );
+            } else if (isVideo) {
+              statusInput.attr(
+                "placeholder",
+                "Say something about this video..."
+              );
+              fileHolder.find(".progress").remove();
+              postBtn.prop("disabled", false);
+              fileHolder.append(videoIcon);
+              cameraBtn.css("color", "#B3B7BD");
+              statusInput.focus();
+              $(".update-status-btn").on("shown.bs.tab", function(e) {
+                $(".status-box .media-body textarea").focus();
+              });
+            } else if (isAudio) {
+              statusInput.attr(
+                "placeholder",
+                "Say something about this audio..."
+              );
+              fileHolder.find(".progress").remove();
+              postBtn.prop("disabled", false);
+              fileHolder.append(audioIcon);
+              cameraBtn.css("color", "#B3B7BD");
+              statusInput.focus();
+              $(".update-status-btn").on("shown.bs.tab", function(e) {
+                $(".status-box .media-body textarea").focus();
+              });
+            } else if (isFile) {
+              statusInput.attr(
+                "placeholder",
+                "Say something about this file..."
+              );
+              fileHolder.find(".progress").remove();
+              postBtn.prop("disabled", false);
+              fileHolder.append(fileIcon);
+              cameraBtn.css("color", "#B3B7BD");
+              statusInput.focus();
+              $(".update-status-btn").on("shown.bs.tab", function(e) {
+                $(".status-box .media-body textarea").focus();
+              });
+            } else {
+              statusInput.attr(
+                "placeholder",
+                "Say something about this photo..."
+              );
+              cameraBtn.css("color", "#5b7fd1");
+              $(".progress-bar")
+                .stop()
+                .animate(
+                  {
+                    width: "100%"
+                  },
+                  3000,
+                  function() {
+                    setTimeout(function() {
+                      statusAlert.show();
+                      $(".status-alert-close").click(function() {
+                        statusAlert.hide();
+                        fileHolder.find(".progress").remove();
+                        postBtn.prop("disabled", false);
+                        fileHolder.empty().hide();
+                        cameraBtn.css("color", "#B3B7BD");
+                        statusInput.attr("placeholder", "What's on your mind?");
+                        statusInput.focus();
+                      });
+                    }, 1000);
+                  }
+                );
+            }
+            fileHolder.find("a.remove").click(function(e) {
+              e.preventDefault();
+              fileHolder.css("background-color", "#f6f7f8");
+              $(".progress-bar").stop(false, true);
+              postBtn.prop("disabled", false);
+              fileHolder.empty().hide();
+              fileInput.val("");
+              statusInput.attr("placeholder", "What's on your mind?");
+              cameraBtn.css("color", "#B3B7BD");
+              statusInput.focus();
+            });
+          })
+          .click(function() {
+            $(this).val("");
+            if (fileHolder.find(".file-icon, img").length === 0) {
+              fileHolder.css("background-color", "#f6f7f8");
+              $(".progress-bar").stop(false, true);
+              postBtn.prop("disabled", false);
+              fileHolder.empty().hide();
+              statusInput.attr("placeholder", "What's on your mind?");
+              cameraBtn.css("color", "#B3B7BD");
+            }
+          });
+        $(".status-controls").show();
+      });
+    });
+
+    $(function() {
+      $(
+        '[data-toggle="tab"], [data-toggle="tooltip"], .post-controls [data-toggle="dropdown"]'
+      ).tooltip();
+      $('[data-toggle="tab"], [data-toggle="tooltip"]').focus(function() {
+        $(this).tooltip("hide");
+      });
+    });
+
+    $(".status-box .media-body, .update-status-btn").click(function() {
+      $(".status-box .media-body textarea").focus();
+      $(".update-status-btn").on("shown.bs.tab", function(e) {
+        $(".status-box .media-body textarea").focus();
+      });
+    });
+
+    jQuery.each(jQuery("textarea"), function() {
+      var offset = this.offsetHeight - this.clientHeight;
+      var resizeTextarea = function(el) {
+        jQuery(el)
+          .css("height", "auto")
+          .css("height", el.scrollHeight + offset);
+      };
+      jQuery(this)
+        .on("keyup input", function() {
+          resizeTextarea(this);
+        })
+        .removeAttr("data-autoresize");
+    });
+
+    $(".post-controls .dropdown-menu li a.more-options-link").click(function(
+      e
+    ) {
+      e.stopPropagation();
+      $(this).hide();
+      $(
+        ".post-controls .dropdown-menu li.extra-option, .post-controls .dropdown-menu .divider"
+      ).show();
+    });
+
+    $(
+      '.facebook-status .nav-tabs [data-toggle="tab"], .facebook-status .nav-tabs [data-toggle="tooltip"]'
+    ).tooltip({
+      delay: {
+        show: 500
+      }
+    });
+  </script>
+</html>

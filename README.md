@@ -1,1 +1,0 @@
-# helpify - community portal
