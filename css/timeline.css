@@ -1,40 +1,306 @@
-body {
-  background-image: url(../images/helpify.jpg);
-  background-size: cover;
-  background-repeat: repeat-y;
+ 
+
+.nav-pills > li > a {
+  border-radius: 0;
+}
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+#wrapper.toggled {
+  padding-left: 250px;
+  overflow: hidden;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: absolute;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
+}
+
+#page-content-wrapper {
+  position: absolute;
+  padding: 15px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.xyz {
+  min-width: 360px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: relative;
+  margin-right: 0px;
+}
+
+.fixed-brand {
+  width: auto;
+}
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
   margin: 0;
   padding: 0;
+  list-style: none;
+  margin-top: 2px;
+}
+
+.sidebar-nav li {
+  text-indent: 15px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  border-left: red 2px solid;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  #wrapper {
+     padding-left: 250px;
+  }
+  .fixed-brand {
+     width: 250px;
+  }
+  #wrapper.toggled {
+     padding-left: 0;
+  }
+  #sidebar-wrapper {
+     width: 250px;
+     height: calc(100vh - 52px);
+     overflow-x: hidden;
+     background-size: 1920px 1200px;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+     width: 250px;
+  }
+  #wrapper.toggled-2 #sidebar-wrapper {
+     width: 50px;
+  }
+  #wrapper.toggled-2 #sidebar-wrapper:hover {
+     width: 250px;
+  }
+  #page-content-wrapper {
+     height: calc(100vh - 52px);
+     padding: 20px;
+     position: relative;
+     -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+     -o-transition: all 0.5s ease;
+     transition: all 0.5s ease;
+     background-image: url(../images/helpify.jpg);
+     background-size: 1920px 1200px;
+  }
+  #wrapper.toggled #page-content-wrapper {
+     position: relative;
+     margin-right: 0;
+     padding-left: 250px;
+  }
+  #wrapper.toggled-2 #page-content-wrapper {
+     position: relative;
+     margin-right: 0;
+     margin-left: -200px;
+     -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+     -o-transition: all 0.5s ease;
+     transition: all 0.5s ease;
+     width: auto;
+  }
+}
+
+.navbar {
+  background: #000;
+  border-radius: 0;
   border: none;
 }
 
-.container {
-  height: 100vh;
-  width: 100vw;
-  border: none;
+.cards-container {
+  height: 100%;
 }
 
-.container-overlay {
-  height: calc(100% - 40px);
-  width: calc(100% - 40px);
-  background: rgba(0, 0, 0, 0.7);
-  position: relative;
-  top: 20px;
-  left: 20px;
+.cards-container .timeline {
+  height: 100%;
 }
 
-.card {
-  background: #fff;
-  border-radius: 2px;
+.cards-container .right-menu {
+  height: 100%;
+}
+
+
+/* post */
+
+#new_status {
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow: 1px 0 10px #AAA;
+  font-family: 'Helvetica Neaue', 'Helvetica', sans-serif;
+  margin-top: 1rem;
+  padding: 0;
+}
+
+#post_header {
+  border-bottom: solid #E8E8E8 1px;
+  margin: 0 2%;
+  padding: 0.65rem 0;
+  width: 95.75%;
+}
+#post_header li {
   display: inline-block;
-  margin: 1rem;
-  position: relative;
+}
+#post_header a {
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  text-decoration: none;
+}
+#post_header li+li {
+  border-left: solid #E8E8E8 1px;
+}
+#post_header li:first-child a {
+  padding: 0 1rem 0 0;
+}
+#post_header li:nth-child(2) a {
+  padding: 0 1rem;
+}
+#post_header li:last-child a {
+  padding: 0 0 0 1rem;
+}
+#post_header .glyphicon {
+  margin-right: 0.5rem;
 }
 
-.card-4 {
-  height: calc(100% - 40px);
-  width: 25%;
+#post_content {
+  margin: 0 2%;
+  padding: 0;
+  width: 95.75%;
 }
-.card-5 {
-  height: calc(100% - 40px);
-  width: 70%;
+#post_content img {
+  border: solid #DDD 1px;
+  margin: 1.25rem 0;
+  padding: 0;
+}
+#post_content .textarea_wrap {
+  cursor: text;
+}
+#post_content textarea {
+  border: 0;
+  margin: 0rem 0 0.5rem 0;
+  outline: 0;
+  padding: 2.5rem 0 0 1.25rem;
+  resize: none;
+}
+
+#post_footer {
+  border-top: solid #E8E8E8 1px;
+  line-height: 3rem;
+  padding: 0 2% 0 3%;
+}
+#post_footer .navbar-nav {
+  padding: 0;
+}
+#post_footer .navbar-nav li {
+  display: inline-block;
+}
+#post_footer .navbar-nav a {
+  display: block;
+  padding: 2rem 1.25rem 2.2rem 1.25rem;
+}
+#post_footer .navbar-nav .glyphicon {
+  line-height: 0;
+}
+#post_footer :not(.btn) .glyphicon {
+  color: #999;
+}
+#post_footer div {
+  padding: 0;
+  text-align: right;
+}
+#post_footer .btn {
+  border-radius: 2px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 2.2rem;
+  margin-top: 0.75rem;
+  padding: 0 0.75rem;
+  vertical-align: middle;
+}
+#post_footer .btn-default {
+  color: #666;
+  margin-right: 0.5rem;
+}
+#post_footer .btn-default .glyphicon {
+  color: #666;
+  margin-right: 0.5rem;
+}
+#post_footer .caret {
+  color: #666;
+  margin-left: 0.5rem;
+}
+#post_footer .btn-primary {
+  background-color: #4e69a2;
+  padding: 0 2rem;
+}
+
+.feed .row {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.feed .row article {
+  border-radius: 5px;
+  background: #fff;
 }
