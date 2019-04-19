@@ -10,19 +10,20 @@ CREATE TABLE profile (
 	email text,
 	first_name text,
 	last_name text,
+	imageurl text,
 	foreign key (email) references users(email)
 );
 
 DROP TABLE IF EXISTS tag CASCADE;
 CREATE TABLE tag (
 	tag text,
-	tagid int,
+	tagid SERIAL,
 	primary key(tagid)
 );
 
 DROP TABLE IF EXISTS posts CASCADE;
 CREATE TABLE posts (
-	pid int,
+	pid SERIAL,
 	content text,
 	email text,
 	tagid int,
@@ -36,9 +37,16 @@ CREATE TABLE posts (
 
 );
 
+DROP TABLE IF EXISTS posts_images CASCADE;
+CREATE TABLE post_images (
+	pid int,
+	imageurl text,
+	foreign key (pid) references posts(pid)
+);
+
 DROP TABLE IF EXISTS comments CASCADE;
 CREATE TABLE comments (
-	cid int,
+	cid SERIAL,
 	pid int,
 	content text,
 	index int,
@@ -64,7 +72,7 @@ CREATE TABLE ratings (
 DROP TABLE IF EXISTS bid CASCADE;
 CREATE TABLE bid (
 	email_from text,
-	bidid int,
+	bidid SERIAL,
 	pid int,
 	amount float,
 	primary key(bidid),

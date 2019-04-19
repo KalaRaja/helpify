@@ -9,6 +9,7 @@ $address = $_GET['address'];
 $email = $_GET['email'];
 $starttime = $_GET['starttime'];
 $endtime = $_GET['endtime'];
+$imageurl = $_GET['imageurl'];
 
 $conn = pg_connect("host=localhost port=5432 user = postgres password=Winteriscoming20! dbname=infoarch");
 
