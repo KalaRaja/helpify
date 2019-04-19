@@ -1,47 +1,39 @@
 <?php
-include '../config/database.php';
+header("Access-Control-Allow-Origin: *");
+// include '../config/database.php';
 
 //TODO - update and add the field names
 $firstname = $_GET['firstname'];
 $lastname = $_GET['lastname'];
 $password = $_GET['password'];
 $email = $_GET['user_email'];
-// $tags = $_GET['tags'];
-$tags='{}';
-$street=Null;
-$state=Null;
-$zip=0;
-$phone=0;
-// $street = $_GET['street'];
-// $state = $_GET['state'];
-// $zip = $_GET['zip'];
-// $phone = $_GET['phone'];
+$imageurl='{}';
+        
+        $conn = pg_connect("host=localhost port=5432 user = postgres password=Winteriscoming20! dbname=infoarch");
+        $createUser = pg_query($conn, "SELECT email FROM users where email = '$email'");
+        $row = pg_fetch_row($createUser);
 
-
-   
-
-        $createUser = sendQuery("SELECT email FROM users where email = '$email'");
-
-        if ($createUser) {
+        if ($row!=null) {
             //TODO- navigate to login page
-            // echo '<script type="text/javascript">alert("The username is already taken"); location="http://localhost/ItsHappening/login.php";</script>';
-            echo "{\"status\":\"failed\"}";
+            $fobject = isset($fobject) ? $fobject : new stdClass();
+            $fobject->SignUp='failed';
+        $fjsonObj = json_encode($fobject);
+        echo $fjsonObj;
             
         } else {
             
-            $insert_users = sendQuery("INSERT INTO users
+            $insert_users = pg_query($conn, "INSERT INTO users
              VALUES
             ('$email', '$password')");
-           $insert_profile = sendQuery("INSERT INTO profile
+           $insert_profile = pg_query($conn,"INSERT INTO profile
                  VALUES
-                ('$email', '$tags','$firstname', '$lastname','$street','$state', '$zip', '$phone')");
+                ('$email','$firstname', '$lastname', '$imageurl')");
            
-            
-
-            //TODO- update the location of file
-            // echo '<script type="text/javascript">alert("Registration Successful");</script>';
-            echo "{\"status\":\"successfull\"}";
-            header("Location: ../timeline.html");
+            $sobject = isset($sobject) ? $sobject : new stdClass();
+            $sobject->SignUp='Success';
+            $sjsonObj = json_encode($sobject);
+            echo $sjsonObj;
+            // header("Location: ../timeline.html");
            
         }
      

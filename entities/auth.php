@@ -1,48 +1,49 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 session_start();
-include '../config/database.php';
-$username = $_POST['username'];
+$username = $_POST['user_email'];
 $password = $_POST['password'];
 
-//TODO - handling login of admin account
-// This is a very ugly and stupid way to handle admin account, but is the easiest - JH
-// if ($username=='admin' && $password=='admin') {
-//     $_SESSION['username'] = 'admin';
-//     header("Location: admin.php");
-//     return;
-// }
+$conn = pg_connect("host=localhost port=5432 user = postgres password=Winteriscoming20! dbname=infoarch");
+$result = pg_query($conn, "SELECT password FROM users  where email = '$username'");
 
-$customerQuery = sendQuery("SELECT password FROM users  where email = '$username'");
-$rows = pg_num_rows($customerQuery);
+$rows = pg_num_rows($result);
     if($rows<1){
-        // echo '<script type="text/javascript">alert("User undefined");</script>';
-        echo "{\"status\":\"failed\"}";
+        // echo '<script type="text/javascript">alert("User undefined");</script>';4
+        $failobject = isset($failobject) ? $failobject : new stdClass();
+        $failobject->login='failed';
+        $failjsonObj = json_encode($failobject);
+        echo $failjsonObj;
     }
 
 function password_auth($authQuery) {
-    global $passwordEnc, $username;
+    global $password, $username;
+    $resultnew = pg_fetch_assoc($authQuery);
+    $passwordRetr = $resultnew['password'];
 
-    $result = $authQuery->fetch_assoc();
-    $passwordRetr = $result['password'];
-
-    if ($passwordEnc == $passwordRetr) {
+    if ($password == $passwordRetr) {
         // $_SESSION['username'] = $username;
-        header("Location: ../timeline.html");
-    } else {
-        //TODO- update location on login
-        // echo '<script type="text/javascript">alert("Incorrect Password"); location="logout.php";</script>';
-        echo "{\"status\":\"failed\"}";
-        header("Location: ../timeline.html");
-    }
+        return true;
+    // } else {
+    //     // echo '<script type="text/javascript">alert("Incorrect Password"); location="logout.php";</script>';
+    //     $fobject = isset($fobject) ? $fobject : new stdClass();
+    //     $fobject->login='failed';
+    //     $fjsonObj = json_encode($fobject);
+    //     echo $fjsonObj;
+        
+    // }
+}
 }
 
 //TODO- Navigation on successful login
-// if ($customerQuery && password_auth($customerQuery)) {
-//     //TODO- update location on login
-//     header("Location: home.php");
-// } else if ($organzierQuery && password_auth($organzierQuery)) {
-//     //TODO- update location on login
-//     header("Location: loadingScreen.php");
+if ($result && password_auth($result)) {
+    //TODO- update location on login
+    $sucobject = isset($sucobject) ? $sucobject : new stdClass(); 
+    $sucobject->login='success';
+        $sucjsonObj = json_encode($sucobject);
+        echo $sucjsonObj;
+        //  header("Location: ../timeline.html");
+}
 // } else {
 //     //TODO- update location on login
 //     echo '<script type="text/javascript">alert("Unknown User"); location="login.php";</script>';
