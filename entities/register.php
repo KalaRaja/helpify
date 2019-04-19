@@ -21,7 +21,7 @@ $imageurl='{}';
         echo $fjsonObj;
             
         } else {
-            
+            //TODO- navigate to timeline page
             $insert_users = pg_query($conn, "INSERT INTO users
              VALUES
             ('$email', '$password')");
