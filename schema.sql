@@ -2,30 +2,38 @@ DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users (
 	email text,
 	password text,
-	admin boolean,
 	primary key (email)
 );
 
 DROP TABLE IF EXISTS profile CASCADE;
 CREATE TABLE profile (
 	email text,
-	tags text[],
 	first_name text,
 	last_name text,
-	street text,
-	state text,
-	zip int,
-	phone int,
 	foreign key (email) references users(email)
+);
+
+DROP TABLE IF EXISTS tag CASCADE;
+CREATE TABLE tag (
+	tag text,
+	tagid int,
+	primary key(tagid)
 );
 
 DROP TABLE IF EXISTS posts CASCADE;
 CREATE TABLE posts (
 	pid int,
 	content text,
-	by_email text,
+	email text,
+	tagid int,
+	isresolved boolean,
+	address text,
+	starttime text,
+	endtime text,
 	primary key (pid),
-	foreign key (by_email) references users (email)
+	foreign key (email) references users (email),
+	foreign key (tagid) references tag (tagid)
+
 );
 
 DROP TABLE IF EXISTS comments CASCADE;
@@ -34,19 +42,32 @@ CREATE TABLE comments (
 	pid int,
 	content text,
 	index int,
-	by_email text,
-	on_email text,
+	email_from text,
 	primary key (cid),
-	foreign key (by_email) references users (email),
-	foreign key (on_email) references users (email),
+	foreign key (email_from) references users (email),
 	foreign key (pid) references posts (pid)
 );
 
 DROP TABLE IF EXISTS ratings CASCADE;
 CREATE TABLE ratings (
-	by_email text,
-	on_email text,
+	email_from text,
+	email_on text,
 	rating int,
-	foreign key (by_email) references users (email),
-	foreign key (on_email) references users (email)
-)
+	pid int,
+	foreign key (email_from) references users (email),
+	foreign key (email_on) references users (email),
+	foreign key (pid) references posts (pid)
+);
+
+
+
+DROP TABLE IF EXISTS bid CASCADE;
+CREATE TABLE bid (
+	email_from text,
+	bidid int,
+	pid int,
+	amount float,
+	primary key(bidid),
+	foreign key (email_from) references users (email),
+	foreign key (pid) references posts (pid)
+);
