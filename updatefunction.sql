@@ -22,6 +22,12 @@ begin
                                              endtime = endtimeVal
 			    																		where pid = pidVal;
     return true;
+    elseif starttimeVal = '' and endtimeVal = '' then
+    UPDATE posts set content = contentVal,
+                                             tagid = tagidVal,
+                                             address = addressVal
+			    																		where pid = pidVal;
+    return true;
 end
 if;
 				return false;
