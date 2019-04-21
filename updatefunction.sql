@@ -33,3 +33,12 @@ if;
 				return false;
 end;
   $$ language plpgsql;
+
+
+create or replace function getBiddersInfo
+(pid_value int) returns table
+(email text, first_name text, last_name text, imageurl text, rating double precision, amount float) as $$
+select distinct b.email, b.first_name, b.last_name, b.imageurl, c.rating::double precision, a.amount
+from bid a join profile b on (a.email_from = b.email) left join ratings c on (a.email_from = c.email_from)
+where a.pid = pid_value;
+$$language sql;

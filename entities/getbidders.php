@@ -12,8 +12,7 @@ $query = pg_query($dbconn, "SELECT * from getBiddersInfo($pid)");
 
 $return_array = array();
 while ($row = pg_fetch_assoc($query)) {
-    $object = (object)['first_name' => $row['first_name'], 'last_name' => $row['last_name'], 'imageurl' => $row['imageurl'], 'rating' => $row['rating']];
-    // $json_object = json_encode($object);
+    $object = (object)['email' => $row['email'],'first_name' => $row['first_name'], 'last_name' => $row['last_name'], 'imageurl' => $row['imageurl'], 'rating' => $row['rating'], 'amount' => $row['amount']];
     array_push($return_array, $object);      
 }
 
