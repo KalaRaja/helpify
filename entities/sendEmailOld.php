@@ -2,26 +2,21 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require './phpmailer/exception.php';
-require './PHPMailer/phpmailer.php';
-require './PHPMailer/smtp.php';
+require '../PHPMailer/src/Exception.php';
+require '../PHPMailer/src/PHPMailer.php';
+require '../PHPMailer/src/SMTP.php';
 
 $email_from = $_GET['email_from'];
 $purpose = $_GET['purpose'];
 $pid = $_GET['pid'];
 $amount = $_GET['amount'];
-$to = '';
+
 
 $conn_string = "host=localhost dbname=postgres port=5432 user=postgres password=Naughty880042";
 
 $dbconn = pg_connect($conn_string);
 
-$query = pg_query($dbconn, "SELECT distinct email as to_email from posts where pid = $pid");
-
-while ($row = pg_fetch_assoc($query)) {
-    $to = $row[0];
-}
-
+$query = pg_query($dbconn, "SELECT enterBid('$email_from', $pid, $amount) as status");
 
 
 function sendEmail($to, $subject, $body){
