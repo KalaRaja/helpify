@@ -49,8 +49,9 @@ CREATE TABLE comments (
 	cid SERIAL,
 	pid int,
 	content text,
-	index int,
+	index SERIAL,
 	email_from text,
+	comment_date text,
 	primary key (cid),
 	foreign key (email_from) references users (email),
 	foreign key (pid) references posts (pid)
@@ -66,7 +67,7 @@ CREATE TABLE ratings (
 	foreign key (email_on) references users (email),
 	foreign key (pid) references posts (pid)
 );
-
+table ratings;
 
 
 DROP TABLE IF EXISTS bid CASCADE;
