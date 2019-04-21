@@ -7,7 +7,6 @@ $pid = $_GET['pid'];
 $content = $_GET['content'];
 $email = $_GET['email'];
 $tagid = $_GET['tagid'];
-$isresolved = $_GET['isresolved'];
 $address = $_GET['address'];
 $starttime = $_GET['starttime'];
 $endtime= $_GET['endtime'];
@@ -16,7 +15,7 @@ $conn_string = "host=localhost dbname=postgres port=5432 user=postgres password=
 
 $dbconn = pg_connect($conn_string);
 
-$query = pg_query($dbconn, "SELECT updatePost($pid, '$content', '$email', $tagid, $isresolved, '$address', '$starttime', '$endtime') as status") ;
+$query = pg_query($dbconn, "SELECT updatePost($pid, '$content', '$email', $tagid, '$address', '$starttime', '$endtime') as status") ;
 
 $data = pg_fetch_object($query);
 
