@@ -2,9 +2,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require './phpmailer/exception.php';
-require './PHPMailer/phpmailer.php';
-require './PHPMailer/smtp.php';
+require '../phpmailer/exception.php';
+require '../PHPMailer/phpmailer.php';
+require '../PHPMailer/smtp.php';
 
 $email_from = $_GET['email_from'];
 $purpose = $_GET['purpose'];
@@ -19,9 +19,10 @@ $dbconn = pg_connect($conn_string);
 $query = pg_query($dbconn, "SELECT distinct email as to_email from posts where pid = $pid");
 
 while ($row = pg_fetch_assoc($query)) {
-    $to = $row[0];
+    $to = $row['to_email'];
 }
 
+echo $to;
 
 
 function sendEmail($to, $subject, $body){
