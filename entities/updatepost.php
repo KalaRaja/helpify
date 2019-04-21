@@ -16,20 +16,22 @@ $conn_string = "host=localhost dbname=postgres port=5432 user=postgres password=
 
 $dbconn = pg_connect($conn_string);
 
-$query = pg_query($dbconn, "UPDATE posts set content = '$content', 
-                                             email = '$email', 
-                                             tagid = $tagid, 
-                                             isresolved = '$isresolved', 
-                                             address = '$address', 
-                                             starttime = '$starttime', 
-                                             endtime = '$endtime' where pid = $pid") ;
+$query = pg_query($dbconn, "SELECT updatePost($pid, '$content', '$email', $tagid, $isresolved, '$address', '$starttime', '$endtime') as status") ;
 
-if($query) {
-    $return_json = (object)['status' => 'success'];
-    echo json_encode($return_json);
+$data = pg_fetch_object($query);
+
+if($data->status == 't') {
+    $result = (object) [
+        'result' => "success"
+        ];
+    $final_result = json_encode($result);
+    echo $final_result;
 }else{
-    $return_json = (object)['status' => 'failed'];
-    echo json_encode($return_json);
+    $result = (object) [
+        'result' => "failed"
+        ];
+    $final_result = json_encode($result);
+    echo $final_result;
 }
 
 ?>
