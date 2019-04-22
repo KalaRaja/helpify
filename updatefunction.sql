@@ -81,9 +81,9 @@ if;
 create or replace function chooseBid
 (pidVal int,emailVal text) returns boolean as $$
 begin
-    if (select ischosen
+    if exists(select 1
     from bid
-    where pid= pidVal and email_from = emailVal) then
+    where pid= pidVal and email_from = emailVal and ischosen=true) then
     return false;
     else
     update bid set ischosen = true where pid = pidVal and email_from = emailVal;
