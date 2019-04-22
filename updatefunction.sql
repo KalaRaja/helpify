@@ -58,3 +58,54 @@ end
 if;
 	end;
   $$ language plpgsql;
+
+
+
+create or replace function enterBid
+(email_from_php text, pid_value int, amount_value float) returns boolean as $$
+begin
+    if (email_from_php in (select email_from
+    from bid
+    where pid = pid_value)) then
+    return False;
+    else
+    insert into bid
+    values(email_from_php, default, pid_value, amount_value, false);
+    return True;
+end
+if;
+		end;
+  $$ language plpgsql;
+
+
+create or replace function chooseBid
+(pidVal int,emailVal text) returns boolean as $$
+begin
+    if (select ischosen
+    from bid
+    where pid= pidVal and email_from = emailVal) then
+    return false;
+    else
+    update bid set ischosen = true where pid = pidVal and email_from = emailVal;
+    return true;
+end
+if;
+		end;
+  $$ language plpgsql;
+
+
+
+
+create or replace function canchoosebid
+(pidval int) returns boolean as $$
+begin
+    if exists(select 1
+    from bid
+    where pid = pidval and ischosen = true) then
+    return false;
+    else
+    return true;
+end
+if;
+	end;
+  $$language plpgsql;
